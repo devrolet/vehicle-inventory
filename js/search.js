@@ -200,8 +200,30 @@ document.addEventListener('DOMContentLoaded', () => {
     showCars(cars);
 });
 
+// Event listeners for the form elements
+const make = document.querySelector('#make')
+make.addEventListener('input', (e) => {
+    searchFields.make = e.target.value;
+    // execute the filter cars based on the items in the search fields object
+    filterCars();
+})
+
 function showCars(cars) {
-    
+    // get the container
+    const container = document.querySelector('#result');
+
+    // build the HTML and print the data in the container
+    cars.forEach(car => {
+        const carHTML = document.createElement('p');
+        carHTML.innerHTML = `
+        ${car.year} ${car.make} ${car.carmodel} - ${car.doors} Doors - Transmission: ${car.transmission} - Price ${car.price} - Color: ${car.color}
+        `;
+        container.appendChild(carHTML);
+    })
+}
+
+function filterCars() {
+    console.log('from filter cars');
 }
 
 
