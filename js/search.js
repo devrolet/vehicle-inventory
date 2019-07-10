@@ -14,12 +14,12 @@ function getCars() {
     return [
         {
             make: 'BMW',
-            carmodel: 'Serie 3',
+            carmodel: '3 Series',
             year: 2012,
             price: 30000,
             doors: 4,
             color: 'White',
-            transmission: 'automatic'
+            transmission: 'Automatic'
         },
         { 
             make: 'Audi', 
@@ -28,7 +28,7 @@ function getCars() {
             price: 40000, 
             doors: 4, 
             color: 'Black', 
-            transmission: 'automatic' 
+            transmission: 'Automatic' 
         },
         {
             make: 'Ford',
@@ -37,7 +37,7 @@ function getCars() {
             price: 20000,
             doors: 2,
             color: 'White',
-            transmission: 'automatic'
+            transmission: 'Automatic'
         },
         { 
             make: 'Audi', 
@@ -46,24 +46,24 @@ function getCars() {
             price: 35000, 
             doors: 4, 
             color: 'Black', 
-            transmission: 'automatic' },
+            transmission: 'Automatic' },
         {
             make: 'BMW',
-            carmodel: 'Serie 5',
+            carmodel: '5 Series',
             year: 2016,
             price: 70000,
             doors: 4,
             color: 'Red',
-            transmission: 'automatic'
+            transmission: 'Automatic'
         },
         {
             make: 'Mercedes Benz',
-            carmodel: 'Clase C',
+            carmodel: 'C Class',
             year: 2015,
             price: 25000,
             doors: 4,
             color: 'White',
-            transmission: 'automatic'
+            transmission: 'Automatic'
         },
         {
             make: 'Chevrolet',
@@ -72,7 +72,7 @@ function getCars() {
             price: 60000,
             doors: 2,
             color: 'Red',
-            transmission: 'manual'
+            transmission: 'Manual'
         },
         { 
             make: 'Ford', 
@@ -81,7 +81,7 @@ function getCars() {
             price: 80000, 
             doors: 2, 
             color: 'Red', 
-            transmission: 'manual' },
+            transmission: 'Manual' },
         {
             make: 'Dodge',
             carmodel: 'Challenger',
@@ -89,7 +89,7 @@ function getCars() {
             price: 40000,
             doors: 4,
             color: 'White',
-            transmission: 'automatic'
+            transmission: 'Automatic'
         },
         { 
             make: 'Audi', 
@@ -98,7 +98,7 @@ function getCars() {
             price: 55000, 
             doors: 2, 
             color: 'Black', 
-            transmission: 'manual' 
+            transmission: 'Manual' 
         },
         {
             make: 'Dodge',
@@ -107,25 +107,25 @@ function getCars() {
             price: 25000,
             doors: 2,
             color: 'Red',
-            transmission: 'manual'
+            transmission: 'Manual'
         },
         {
             make: 'Mercedes Benz',
-            carmodel: 'Clase C',
+            carmodel: 'C Class',
             year: 2018,
             price: 45000,
             doors: 4,
             color: 'Blue',
-            transmission: 'automatic'
+            transmission: 'Automatic'
         },
         {
             make: 'BMW',
-            carmodel: 'Serie 5',
+            carmodel: '5 Series',
             year: 2019,
             price: 90000,
             doors: 4,
             color: 'White',
-            transmission: 'automatic'
+            transmission: 'Automatic'
         },
         { 
             make: 'Ford',
@@ -134,7 +134,7 @@ function getCars() {
             price: 60000,
             doors: 2,
             color: 'Black',
-            transmission: 'manual' 
+            transmission: 'Manual' 
         },
         {
             make: 'Dodge',
@@ -143,34 +143,43 @@ function getCars() {
             price: 35000,
             doors: 2,
             color: 'Blue',
-            transmission: 'automatic'
+            transmission: 'Automatic'
         },
         {
             make: 'BMW',
-            carmodel: 'Serie 3',
+            carmodel: '3 Series',
             year: 2018,
             price: 50000,
             doors: 4,
             color: 'White',
-            transmission: 'automatic'
+            transmission: 'Automatic'
         },
         {
             make: 'BMW',
-            carmodel: 'Serie 5',
+            carmodel: '5 Series',
             year: 2017,
             price: 80000,
             doors: 4,
             color: 'Black',
-            transmission: 'automatic'
+            transmission: 'Automatic'
         },
         {
             make: 'Mercedes Benz',
-            carmodel: 'Clase C',
+            carmodel: 'C Class',
             year: 2018,
             price: 40000,
             doors: 4,
             color: 'White',
-            transmission: 'automatic'
+            transmission: 'Automatic'
+        },
+        {
+            make: 'Mercedes Benz',
+            carmodel: 'S Class',
+            year: 2016,
+            price: 45000,
+            doors: 4,
+            color: 'Black',
+            transmission: 'Automatic'
         },
         { 
             make: 'Audi', 
@@ -179,7 +188,7 @@ function getCars() {
             price: 30000, 
             doors: 4, 
             color: 'Blue', 
-            transmission: 'automatic'
+            transmission: 'Automatic'
         }
     ];
 }
@@ -279,13 +288,23 @@ function showCars(cars) {
     })
 }
 
+function noResults() {
+    clearHTML();
+
+    // build the alert
+    const noResults = document.createElement('div');
+    noResults.classList.add('alert', 'error');
+    noResults.appendChild(document.createTextNode('No Results Found'));
+    document.querySelector('#result').appendChild(noResults);
+}
+
 function filterCars() {
     const result = getCars().filter(filterMake).filter(filterYear).filter(filterMinPrice).filter(filterMaxPrice).filter(filterDoors).filter(filterTransmission).filter(filterColor);
 
     if(result.length) {
         showCars(result);
     } else {
-        // alert('No Results Found');
+        noResults();
     }
 }
 
