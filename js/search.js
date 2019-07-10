@@ -1,4 +1,4 @@
-// crear los años
+// Create Year Range
 const years = document.createElement('option');
 const  maxyear = new Date().getFullYear();
 let  minyear = maxyear - 70;
@@ -10,6 +10,7 @@ for(let i = maxyear; i >  minyear; i--) {
     document.querySelector('#year').appendChild(option);
 }
 
+// List of Cars
 function getCars() {
     return [
         {
@@ -189,6 +190,24 @@ function getCars() {
             doors: 4, 
             color: 'Blue', 
             transmission: 'Automatic'
+        },
+        { 
+            make: 'Chevrolet', 
+            carmodel: 'Tahoe', 
+            year: 2015, 
+            price: 30000, 
+            doors: 4, 
+            color: 'White', 
+            transmission: 'Automatic'
+        },
+        { 
+            make: 'Chevrolet', 
+            carmodel: 'Suburban', 
+            year: 2019, 
+            price: 45000, 
+            doors: 4, 
+            color: 'Green', 
+            transmission: 'Automatic'
         }
     ];
 }
@@ -212,6 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Event listeners for the form elements
+// Get Make Value from form
 const make = document.querySelector('#make');
 make.addEventListener('input', e => {
     searchFields.make = e.target.value;
@@ -219,6 +239,7 @@ make.addEventListener('input', e => {
     filterCars();
 });
 
+// Get Year Value from form
 const year = document.querySelector('#year');
 year.addEventListener('input', e => {
     searchFields.year = Number(e.target.value);
@@ -226,6 +247,7 @@ year.addEventListener('input', e => {
     filterCars();
 });
 
+// Get Min Year Value from form
 const min = document.querySelector('#min');
 min.addEventListener('input', e => {
     searchFields.min = Number(e.target.value);
@@ -233,6 +255,7 @@ min.addEventListener('input', e => {
     filterCars();
 });
 
+// Get Max Year Value from form
 const max = document.querySelector('#max');
 max.addEventListener('input', e => {
     searchFields.max = Number(e.target.value);
@@ -240,6 +263,7 @@ max.addEventListener('input', e => {
     filterCars();
 });
 
+// Get Door Value from form
 const doors = document.querySelector('#doors');
 doors.addEventListener('input', e => {
     searchFields.doors = Number(e.target.value);
@@ -247,6 +271,7 @@ doors.addEventListener('input', e => {
     filterCars();
 });
 
+// Get Transmission Value from form
 const transmission = document.querySelector('#transmission');
 transmission.addEventListener('input', e => {
     searchFields.transmission = e.target.value;
@@ -254,6 +279,7 @@ transmission.addEventListener('input', e => {
     filterCars();
 });
 
+// Get Color Value from form
 const color = document.querySelector('#color');
 color.addEventListener('input', e => {
     searchFields.color = e.target.value;
@@ -261,6 +287,7 @@ color.addEventListener('input', e => {
     filterCars();
 });
 
+// Clear Previous HTML
 function clearHTML() {
     // select the container
     const container = document.querySelector('#result');
@@ -288,6 +315,7 @@ function showCars(cars) {
     })
 }
 
+// If No Results Found
 function noResults() {
     clearHTML();
 
@@ -298,6 +326,7 @@ function noResults() {
     document.querySelector('#result').appendChild(noResults);
 }
 
+// Filter Cars
 function filterCars() {
     const result = getCars().filter(filterMake).filter(filterYear).filter(filterMinPrice).filter(filterMaxPrice).filter(filterDoors).filter(filterTransmission).filter(filterColor);
 
@@ -308,6 +337,7 @@ function filterCars() {
     }
 }
 
+// Filter Cars by Make
 function filterMake(car) {
     if(searchFields.make) {
         return car.make === searchFields.make;
@@ -316,6 +346,7 @@ function filterMake(car) {
     }
 }
 
+// Filter Cars by Year
 function filterYear(car) {
     if(searchFields.year) {
         return car.year === searchFields.year;
@@ -324,6 +355,7 @@ function filterYear(car) {
     }
 }
 
+// Filter Cars by Min Price
 function filterMinPrice(car) {
     if(searchFields.min) {
         return car.price >= searchFields.min;
@@ -332,6 +364,7 @@ function filterMinPrice(car) {
     }
 }
 
+// Filter Cars by Max Price
 function filterMaxPrice(car) {
     if(searchFields.max) {
         return car.price <= searchFields.max;
@@ -340,6 +373,7 @@ function filterMaxPrice(car) {
     }
 }
 
+// Filter Cars by # of Doors
 function filterDoors(car) {
     if(searchFields.doors) {
         return car.doors === searchFields.doors;
@@ -348,6 +382,7 @@ function filterDoors(car) {
     }
 }
 
+// Filter Cars by Transmission Type
 function filterTransmission(car) {
     if(searchFields.transmission) {
         return car.transmission === searchFields.transmission;
@@ -356,6 +391,7 @@ function filterTransmission(car) {
     }
 }
 
+// Filter Cars by Color
 function filterColor(car) {
     if(searchFields.color) {
         return car.color === searchFields.color;
