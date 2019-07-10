@@ -9,6 +9,7 @@ for(let i = maxyear; i >  minyear; i--) {
     option.innerText = i;
     document.querySelector('#year').appendChild(option);
 }
+
 function getCars() {
     return [
         {
@@ -201,12 +202,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Event listeners for the form elements
-const make = document.querySelector('#make')
-make.addEventListener('input', (e) => {
+const make = document.querySelector('#make');
+make.addEventListener('input', e => {
     searchFields.make = e.target.value;
     // execute the filter cars based on the items in the search fields object
     filterCars();
-})
+});
+
+const year = document.querySelector('#year');
+year.addEventListener('input', e => {
+    searchFields.year = Number(e.target.value);
+    // execute the filter cars based on the items in the search fields object
+    filterCars();
+});
 
 function showCars(cars) {
     // get the container
@@ -223,7 +231,25 @@ function showCars(cars) {
 }
 
 function filterCars() {
-    console.log('from filter cars');
+    const result = getCars().filter(filterMake).filter(filterYear);
+
+    console.log(result);
+}
+
+function filterMake(car) {
+    if(searchFields.make) {
+        return car.make === searchFields.make;
+    } else {
+        return car;
+    }
+}
+
+function filterYear(car) {
+    if(searchFields.year) {
+        return car.year === searchFields.year;
+    } else {
+        return car;
+    }
 }
 
 
