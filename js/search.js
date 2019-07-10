@@ -216,10 +216,23 @@ year.addEventListener('input', e => {
     filterCars();
 });
 
+function clearHTML() {
+    // select the container
+    const container = document.querySelector('#result');
+
+    // clear the HTML
+    while(container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+}
+
 function showCars(cars) {
     // get the container
     const container = document.querySelector('#result');
 
+    // clear previous HTML
+    clearHTML();
+    
     // build the HTML and print the data in the container
     cars.forEach(car => {
         const carHTML = document.createElement('p');
@@ -233,7 +246,11 @@ function showCars(cars) {
 function filterCars() {
     const result = getCars().filter(filterMake).filter(filterYear);
 
-    console.log(result);
+    if(result.length) {
+        showCars(result);
+    } else {
+        alert('No Results Found');
+    }
 }
 
 function filterMake(car) {
