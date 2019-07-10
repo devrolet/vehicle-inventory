@@ -1,7 +1,7 @@
 // crear los años
 const years = document.createElement('option');
 const  maxyear = new Date().getFullYear();
-let  minyear = maxyear - 10;
+let  minyear = maxyear - 70;
 
 for(let i = maxyear; i >  minyear; i--) {
     let option =  document.createElement('option');
